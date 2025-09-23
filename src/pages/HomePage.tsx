@@ -4,14 +4,17 @@ import { useState, useEffect } from "react";
 import type { Movie } from "../types/popularMovieResponse";
 import styles from "./HomePage.module.css";
 
-
 export function HomePage() {
   const [movies, setMovies] = useState<Movie[] | null>(null);
 
   useEffect(() => {
+    const queryParams = {
+      page: 1,
+      language: "UK",
+    };
     async function getPopularMovies() {
       try {
-        const response = await apiClient.get("/movies/popular");
+        const response = await apiClient.get("/movies/popular",{params: queryParams});
         console.log(response.data.results);
         setMovies(response.data.results);
       } catch (error) {
@@ -26,7 +29,7 @@ export function HomePage() {
 
   console.log("HomePage styles object:", styles); // <--- 在這裡添加這行
   return (
-    <div className={styles.homePageContainer}> 
+    <div className={styles.homePageContainer}>
       {movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
