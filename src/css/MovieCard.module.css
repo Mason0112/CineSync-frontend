@@ -1,0 +1,39 @@
+/* 卡片主體樣式 */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
+  background-color: #fff; /* 新增背景色以突顯卡片 */
+}
+
+/* 使用 CSS 的 :hover 偽類來處理滑鼠懸停效果 */
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* 海報圖片樣式 */
+.poster {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* 標題樣式 */
+.title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 12px 0 4px 0;
+  color: #1a1a1a; /* 給予深色，增加易讀性 */
+}
+
+/* 其他資訊樣式 (上映日期、評分) */
+.info {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 4px 0;
+}
