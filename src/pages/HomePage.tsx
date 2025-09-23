@@ -2,6 +2,8 @@ import { MovieCard } from "../components/MovieCard";
 import apiClient from "../apiClient";
 import { useState, useEffect } from "react";
 import type { Movie } from "../types/popularMovieResponse";
+import styles from "./HomePage.module.css";
+
 
 export function HomePage() {
   const [movies, setMovies] = useState<Movie[] | null>(null);
@@ -21,16 +23,10 @@ export function HomePage() {
   if (!movies) {
     return <div>Loading popular movies... ✨</div>;
   }
+
+  console.log("HomePage styles object:", styles); // <--- 在這裡添加這行
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap", // Allows cards to wrap to the next line
-        justifyContent: "center", // Centers the cards horizontally
-        gap: "16px", // Adds space between cards
-        padding: "20px",
-      }}
-    >
+    <div className={styles.homePageContainer}> 
       {movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}

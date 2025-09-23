@@ -1,5 +1,5 @@
 import { type Movie } from "../types/popularMovieResponse";
-import styles from "../css/MovieCard.module.css";
+import styles from "./MovieCard.module.css";
 
 // The interface for the component's props, which you already had.
 interface MovieProps {

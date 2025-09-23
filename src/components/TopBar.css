@@ -1,0 +1,60 @@
+/* 使用 Flexbox 來做排版，非常方便 */
+.topbar {
+  display: flex;
+  justify-content: space-between; /* 讓子元素平均分佈在兩側 */
+  align-items: center; /* 垂直置中 */
+  padding: 0 2rem; /* 上下 0，左右 2rem 的內邊距 */
+  height: 60px; /* 固定高度 */
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 加個陰影更有立體感 */
+  width: 100%;
+}
+
+.topbar-logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.topbar-logo img {
+  height: 200px; /* Logo 圖片高度 */
+  margin-right: 10px;
+}
+
+.topbar-nav {
+  display: flex;
+  list-style: none; /* 去除 ul 的預設點點 */
+  margin: 0;
+  padding: 0;
+}
+
+.topbar-nav li {
+  margin: 0 15px; /* 連結之間的間距 */
+}
+
+.topbar-nav a {
+  text-decoration: none;
+  color: #555;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.topbar-nav a:hover {
+  color: #007bff; /* 滑鼠移上去時變色 */
+}
+
+.login-button {
+  padding: 8px 16px;
+  border: 1px solid #007bff;
+  background-color: transparent;
+  color: #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login-button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
