@@ -1,5 +1,5 @@
 import { type Movie } from "../types/popularMovieResponse";
-import styles from "./MovieCard.module.css";
+import styles from "../css/MovieCard.module.css";
 
 // The interface for the component's props, which you already had.
 interface MovieProps {
@@ -18,7 +18,7 @@ export function MovieCard({ movie }: MovieProps) {
       />
       <h3 className={styles.title}>{movie.title}</h3>
       <p className={styles.info}>Release Date: {movie.releaseDate}</p>
-      <p className={styles.info}>⭐ Rating: {movie.voteAverage.toFixed(1)} / 10</p>
+      <p className={styles.info}>⭐ Rating: {movie.voteAverage} / 10</p>
     </div>
   );
 }
