@@ -22,6 +22,7 @@ const TopBar: React.FC = () => {
 
       {/* 使用者功能區 */}
       <div className="topbar-actions">
+        <button className="login-button">註冊</button>
         <button className="login-button">登入</button>
       </div>
     </nav>
