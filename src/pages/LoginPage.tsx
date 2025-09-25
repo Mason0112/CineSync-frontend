@@ -23,10 +23,12 @@ export const LoginPage = () => {
       );
 
       const token = response.data.token;
+      console.log(response.data)
+      const loginName = response.data.users.userName; // 假設後端回傳的欄位名稱是 userName
       if (token) {
-        localStorage.setItem("authToken", token);
-        login(token);
+        login(token, loginName);
         console.log("登入成功！Token 已儲存:", token);
+        console.log("登入成功！userName 已儲存:", loginName);
         navigate("/");
       } else {
         setError("登入失敗：未取得 token。");
@@ -37,6 +39,7 @@ export const LoginPage = () => {
           err.response?.data?.message || err.message || "發生未知錯誤";
         setError(`登入失敗：${errorMessage}`);
       } else {
+        console.error(err);
         setError("發生未知錯誤，可能為網路問題");
       }
     } finally {
@@ -46,7 +49,6 @@ export const LoginPage = () => {
 
   return (
     <div className="login-page-container">
-      <h1 className="page-title">使用者登入</h1>
       <LoginForm onLogin={handleLogin} isLoading={loading} error={error} />
     </div>
   );

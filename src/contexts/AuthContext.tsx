@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 // 定義 Context 要存放的資料結構
 interface AuthContextType {
   isLoggedIn: boolean;
-  login: (token: string) => void;
+  userName: string | null;
+  login: (token: string, userName?: string) => void;
   logout: () => void;
 }
 
@@ -15,30 +16,41 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem('authToken'));
+  const [userName, setUserName] = useState<string | null>(() => localStorage.getItem('userName'));
 
   // 登入函式
-  const login = useCallback((token: string) => {
-    // 1. 將 token 存入 localStorage
-    localStorage.setItem('authToken', token);
-    // 2. 更新 state，這將會觸發所有使用此 context 的元件重新渲染
-    setIsLoggedIn(true);
-    // 3. 導航到首頁或其他登入後頁面
-    navigate('/');
-  }, [navigate]);
+const login = useCallback((token: string, userName?: string) => {
+  const nameToStore = userName || null; // 統一為 null
+  localStorage.setItem('authToken', token);
+  
+  if (nameToStore) {
+    localStorage.setItem('userName', nameToStore);
+  } else {
+    localStorage.removeItem('userName');
+  }
+
+  setIsLoggedIn(true);
+  setUserName(nameToStore); // <-- 關鍵修正！
+  navigate('/');
+}, [navigate]);
 
   // 登出函式
   const logout = useCallback(() => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('userName');
+    setUserName(null);
     setIsLoggedIn(false);
     navigate('/');
   }, [navigate]);
 
+
   // 使用 useMemo 來避免不必要的重新渲染
   const value = useMemo(() => ({
     isLoggedIn,
+    userName,
     login,
     logout,
-  }), [isLoggedIn, login, logout]);
+  }), [isLoggedIn, userName, login, logout]);
 
   return (
     <AuthContext.Provider value={value}>

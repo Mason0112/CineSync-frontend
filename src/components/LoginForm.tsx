@@ -27,10 +27,10 @@ export const LoginForm = ({ onLogin, isLoading, error }: LoginFormProps) => {
   return (
     <div className={styles.formContainer}>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <h2 className={styles.title}>Login</h2>
+        <h2 className={styles.title}>登入</h2>
         
         <div className={styles.formGroup}>
-          <label htmlFor="email" className={styles.label}>Email:</label>
+          <label htmlFor="email" className={styles.label}>電子郵件:</label>
           <input
             id="email"
             type="email"
@@ -44,7 +44,7 @@ export const LoginForm = ({ onLogin, isLoading, error }: LoginFormProps) => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="password" className={styles.label}>Password:</label>
+          <label htmlFor="password" className={styles.label}>密碼:</label>
           <input
             id="password"
             type="password"
@@ -53,7 +53,6 @@ export const LoginForm = ({ onLogin, isLoading, error }: LoginFormProps) => {
             onChange={handleChange}
             required
             className={styles.input}
-            placeholder="••••••••"
           />
         </div>
         {error && <span className={styles.error}>{error}</span>}

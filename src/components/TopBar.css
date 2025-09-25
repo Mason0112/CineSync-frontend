@@ -1,104 +1,208 @@
-/* 使用 Flexbox 來做排版，非常方便 */
-.topbar {
-  display: flex;
-  justify-content: space-between; /* 讓子元素平均分佈在兩側 */
-  align-items: center; /* 垂直置中 */
-  padding: 0 0rem;
-  height: 150px; /* 固定高度 */
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 加個陰影更有立體感 */
-  width: 100%;
+/* TopBar.css */
+
+/* ✨ 1. 全域變數與主題設定 (Design System) */
+/* 將常用的值定義成變數，方便統一管理和修改 */
+:root {
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --secondary-color-dark: #5a6268;
+  --text-color: #333;
+  --text-color-light: #555;
+  --background-color: #ffffff;
+  --border-color: #eaeaea;
+  --header-height: 70px; /* 稍微加高一點，更大氣 */
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
 }
 
-.topbar-logo  {
+/* --- 主要容器 --- */
+.topbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  height: var(--header-height);
+  padding: 0 32px; /* 稍微加大左右邊距 */
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  /* 使用柔和的陰影增加立體感 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky; /* 讓導覽列滾動時固定在頂部 */
+  top: 0;
+  z-index: 1000;
+}
+
+/* --- Logo 區塊 --- */
+.topbar-logo {
+  grid-column: 1;
+  justify-self: start;
+  /* 確保 logo 垂直置中 */
   display: flex;
   align-items: center;
-  text-decoration: none;
-  color: #333;
 }
+
 
 .topbar-logo img {
-  height: 150px; /* Logo 圖片高度 */
-  margin-right: 10px;
+  /* 設定一個比 topbar 高度 (70px) 稍小的高度 */
+  height: 50px; 
+  
+  /* 寬度設為 auto，瀏覽器會自動計算以維持 1:1 的比例 */
+  width: auto; 
+  
+  /* 確保圖片在垂直方向上對齊得很好 */
+  vertical-align: middle; 
+  
+  /* 之前的 object-fit 和 object-position 樣式現在都不需要了 */
 }
 
+
+/* --- 中間導覽列 --- */
 .topbar-nav {
-  display: flex;
-  list-style: none; /* 去除 ul 的預設點點 */
+  grid-column: 2;
+  justify-self: center;
+}
+
+.topbar-nav ul { /* 您的 JSX 結構沒有 ul，所以這個選擇器可能用不到 */
+  list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  gap: 32px; /* 加大連結間距 */
 }
 
+/* 直接對 li 元素操作 */
 .topbar-nav li {
-  margin: 0 15px; /* 連結之間的間距 */
+  list-style: none;
+  display: inline-block; /* 讓 li 水平排列 */
+  margin: 0 20px;
 }
 
 .topbar-nav a {
   text-decoration: none;
-  color: #555;
-  font-weight: bold;
-  transition: color 0.3s;
+  color: var(--text-color-light);
+  font-weight: 500; /* 使用 500 字重，更優雅 */
+  font-size: 1rem;
+  padding: 8px 0;
+  position: relative;
+  transition: color var(--transition-speed) ease;
+}
+
+/* ✨ 3. 導覽列連結美化：滑鼠懸停時出現底線動畫 */
+.topbar-nav a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transform: scaleX(0); /* 初始狀態下底線寬度為 0 */
+  transform-origin: bottom right;
+  transition: transform var(--transition-speed) ease-out;
 }
 
 .topbar-nav a:hover {
-  color: #007bff; /* 滑鼠移上去時變色 */
+  color: var(--text-color);
 }
 
+.topbar-nav a:hover::after {
+  transform: scaleX(1); /* 滑鼠懸停時底線展開 */
+  transform-origin: bottom left;
+}
+
+
+/* --- 右側使用者功能區 --- */
 .topbar-actions {
+  grid-column: 3;
+  justify-self: end;
   display: flex;
   align-items: center;
-  gap: 15px; /* 稍微拉大按鈕間距 */
+  gap: 16px;
 }
 
-/* 建立一個通用的按鈕基底樣式 */
+/* ✨ 4. 使用者區塊細節：美化歡迎訊息 */
+.topbar-actions span {
+  color: var(--text-color);
+  font-weight: 500;
+  white-space: nowrap; /* 避免文字換行 */
+}
+
+/* --- 通用按鈕樣式 --- */
 .button {
-  padding: 10px 22px; /* 增加內邊距，讓按鈕更大方 */
+  padding: 10px 22px;
   border: none;
-  border-radius: 8px; /* 更圓潤的邊角 */
+  border-radius: var(--border-radius);
   cursor: pointer;
   font-weight: bold;
   font-size: 0.95rem;
-  text-decoration: none; /* 確保 Link 元件沒有底線 */
-  display: inline-block; /* 讓 Link 元件表現得像按鈕 */
-  transition: all 0.3s ease; /* 平滑的過渡動畫 */
+  text-decoration: none;
+  display: inline-block;
+  transition: all var(--transition-speed) ease;
+  border: 2px solid transparent; /* 預留邊框位置，避免 hover 時跳動 */
 }
 
-/* 按鈕的通用互動效果 */
+/* ✨ 5. 按鈕互動效果打磨 */
 .button:hover {
-  transform: translateY(-2px); /* 向上浮動一點 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 增加陰影 */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .button:active {
-  transform: translateY(0); /* 按下時恢復原位 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 主要按鈕 (例如: 註冊) - 填滿顏色 */
+/* 主要按鈕 (註冊) */
 .button-primary {
-  background-color: #007bff; /* 主題色 */
+  background-color: var(--primary-color);
   color: white;
 }
 .button-primary:hover {
-  background-color: #0056b3; /* 滑鼠懸停時加深顏色 */
+  background-color: var(--primary-color-dark);
 }
 
-/* 次要按鈕 (例如: 登入) - 描邊樣式 */
+/* 次要按鈕 (登入) */
 .button-secondary {
   background-color: transparent;
-  color: #007bff;
-  /* 加上一個和背景色同色的 box-shadow 來製造邊框效果，避免 hover 時跳動 */
-  box-shadow: inset 0 0 0 2px #007bff; 
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
 .button-secondary:hover {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
 }
 
-/* 登出按鈕 - 通常使用較低調或不同的顏色 */
+/* 登出按鈕 */
 .button-logout {
-  background-color: #6c757d; /* 中性灰色 */
+  background-color: var(--secondary-color);
   color: white;
 }
 .button-logout:hover {
-  background-color: #5a6268;
+  background-color: var(--secondary-color-dark);
+}
+
+/* ✨ 6. 最重要的加分項：響應式設計 (RWD) */
+/* 當螢幕寬度小於 768px (平板或手機) */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0 16px; /* 縮小邊距 */
+    /* 將中間的導覽列空間清空，左右各佔一半 */
+    grid-template-columns: auto 1fr; 
+  }
+
+  .topbar-nav {
+    display: none; /* 隱藏桌面版的文字導覽列 */
+  }
+
+  .topbar-actions {
+    grid-column: 2; /* 將右側區塊移到第二欄 */
+  }
+  
+  /* 可以新增一個漢堡選單按鈕 (需要在 JSX 中加入) */
+  /* .hamburger-menu { display: block; } */
+
+  /* 在手機上可能只顯示圖示或簡化文字 */
+  .topbar-actions span {
+    display: none; /* 隱藏歡迎文字，節省空間 */
+  }
 }
