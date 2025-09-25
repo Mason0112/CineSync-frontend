@@ -1,0 +1,76 @@
+/* === 頁面整體佈局 === */
+.pageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* 確保容器至少和視窗一樣高 */
+  background-color: #f0f2f5; /* 柔和的背景灰 */
+  padding: 20px; /* 在手機上提供一些邊距 */
+  box-sizing: border-box;
+}
+
+/* === 註冊卡片容器 === */
+.registerPageContainer {
+  width: 100%;
+  max-width: 450px; /* 設定最大寬度，避免在桌面版上過寬 */
+  padding: 2rem 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08); /* 更柔和的陰影 */
+  text-align: center;
+  box-sizing: border-box; /* 確保 padding 不會影響寬度計算 */
+}
+
+/* === 頁面標題 === */
+.pageTitle {
+  font-size: 2rem; /* 32px */
+  font-weight: 600;
+  color: #1c1e21; /* 深灰色，比純黑更柔和 */
+  margin-top: 0;
+  margin-bottom: 2rem; /* 與表單內容的間距 */
+}
+
+/* === 訊息提示的通用樣式 === */
+.loadingMessage,
+.successMessage,
+.errorMessagePage {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-top: 1.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+/* === 讀取中訊息 === */
+.loadingMessage {
+  color: #555;
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+/* === 成功訊息 === */
+.successMessage {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+
+/* === 錯誤訊息 === */
+.errorMessagePage {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+
+/* === 響應式設計：在小螢幕（手機）上調整樣式 === */
+@media (max-width: 480px) {
+  .registerPageContainer {
+    padding: 2rem 1.5rem; /* 在手機上減少左右內邊距 */
+  }
+
+  .pageTitle {
+    font-size: 1.8rem; /* 稍微縮小標題字體 */
+  }
+}
