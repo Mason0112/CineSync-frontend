@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // 匯入 CSS 檔案，styles 是一個物件
 import styles from "./RegisterPage.module.css";
 
-export function RegisterPage() {
+export const RegisterPage = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);

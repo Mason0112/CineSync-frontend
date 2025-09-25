@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { type UserRegisterRequest } from "../types/users";
-import styles from './RegisterForm.module.css'; // 確認檔名正確
+import styles from './RegisterForm.module.css'; 
 
 // 從 props 接收 isLoading 狀態
 interface RegisterFormProps {

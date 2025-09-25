@@ -44,23 +44,61 @@
   color: #007bff; /* 滑鼠移上去時變色 */
 }
 
-.login-button {
-  padding: 8px 16px;
-  border: 1px solid #007bff;
-  background-color: transparent;
-  color: #007bff;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.login-button:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
 .topbar-actions {
   display: flex;
   align-items: center;
-  gap: 10px; /* 按鈕之間的間距 */
+  gap: 15px; /* 稍微拉大按鈕間距 */
+}
+
+/* 建立一個通用的按鈕基底樣式 */
+.button {
+  padding: 10px 22px; /* 增加內邊距，讓按鈕更大方 */
+  border: none;
+  border-radius: 8px; /* 更圓潤的邊角 */
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-decoration: none; /* 確保 Link 元件沒有底線 */
+  display: inline-block; /* 讓 Link 元件表現得像按鈕 */
+  transition: all 0.3s ease; /* 平滑的過渡動畫 */
+}
+
+/* 按鈕的通用互動效果 */
+.button:hover {
+  transform: translateY(-2px); /* 向上浮動一點 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 增加陰影 */
+}
+.button:active {
+  transform: translateY(0); /* 按下時恢復原位 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 主要按鈕 (例如: 註冊) - 填滿顏色 */
+.button-primary {
+  background-color: #007bff; /* 主題色 */
+  color: white;
+}
+.button-primary:hover {
+  background-color: #0056b3; /* 滑鼠懸停時加深顏色 */
+}
+
+/* 次要按鈕 (例如: 登入) - 描邊樣式 */
+.button-secondary {
+  background-color: transparent;
+  color: #007bff;
+  /* 加上一個和背景色同色的 box-shadow 來製造邊框效果，避免 hover 時跳動 */
+  box-shadow: inset 0 0 0 2px #007bff; 
+}
+.button-secondary:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* 登出按鈕 - 通常使用較低調或不同的顏色 */
+.button-logout {
+  background-color: #6c757d; /* 中性灰色 */
+  color: white;
+}
+.button-logout:hover {
+  background-color: #5a6268;
 }

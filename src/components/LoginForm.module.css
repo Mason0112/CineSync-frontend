@@ -1,0 +1,99 @@
+/* 整個表單的容器，用於垂直和水平置中 */
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* 讓容器至少佔 80% 的視窗高度 */
+  padding: 20px;
+  background-color: #f4f7f6; /* 淡灰色背景 */
+}
+
+/* 表單卡片本身 */
+.form {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* 統一設定子元素之間的間距 */
+}
+
+/* 表單標題 */
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* 用於包裝 label 和 input 的群組 */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* label 和 input 之間的間距 */
+}
+
+/* 標籤 */
+.label {
+  font-weight: 600;
+  color: #555;
+}
+
+/* 輸入框 */
+.input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease; /* 平滑過渡效果 */
+}
+
+/* 輸入框獲取焦點時的樣式 */
+.input:focus {
+  outline: none;
+  border-color: #007bff; /* 變更邊框顏色 */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 加上外光暈 */
+}
+
+/* 登入按鈕 */
+.button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* 與上方元素增加一點間距 */
+}
+
+/* 按鈕滑鼠懸停效果 */
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* 按鈕被禁用時的樣式 (isLoading = true) */
+.button:disabled {
+  background-color: #a0c3e6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #e74c3c; /* 醒目的紅色 */
+  background-color: #fddddd; /* 淡紅色背景，增加可讀性 */
+  border: 1px solid #e74c3c;
+  border-radius: 5px;
+  padding: 10px 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: -10px; /* 向上移動一點，填補與上方元素的間距 */
+  margin-bottom: 15px; /* 與下方按鈕的間距 */
+}

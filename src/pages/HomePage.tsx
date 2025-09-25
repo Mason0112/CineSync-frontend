@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import type { Movie } from "../types/popularMovieResponse";
 import styles from "./HomePage.module.css";
 
-export function HomePage() {
+export const HomePage = () => {
   const [movies, setMovies] = useState<Movie[] | null>(null);
 
   useEffect(() => {
