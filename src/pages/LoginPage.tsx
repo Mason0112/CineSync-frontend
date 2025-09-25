@@ -4,14 +4,13 @@ import apiClient from "../apiClient";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { type UserLoginRequest, type LoginResponse } from "../types/users";
-import { useAuth } from '../contexts/AuthContext'; // 1. 匯入 useAuth
+import { useAuthStore } from '../stores/authStore';
 
 export const LoginPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate(); // 取得 navigate 函式
-  const { login } = useAuth(); // 2. 從 context 取得 login 函式
-
+  const login = useAuthStore((state) => state.login);
   const handleLogin = async (formData: UserLoginRequest) => {
     setError(null);
     setLoading(true);

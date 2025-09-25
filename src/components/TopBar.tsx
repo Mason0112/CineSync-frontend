@@ -3,10 +3,20 @@
 import "./TopBar.css";
 import logo from "../images/BigLogo.png";
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuthStore } from '../stores/authStore';
+import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
-  const { isLoggedIn, logout, userName } = useAuth();
+  const { isLoggedIn, userName, logout } = useAuthStore();
+  const navigate = useNavigate();
+
+   const handleLogout = () => {
+    // 1. 呼叫 store 的 logout action
+    logout();
+    
+    // 2. 處理導航
+    navigate('/');
+  };
 
   return (
     <nav className="topbar">
@@ -38,7 +48,7 @@ const TopBar = () => {
             <span>歡迎回來，{userName}！</span>
             <button
               className="button button-logout" // 套用登出按鈕樣式
-              onClick={logout}
+              onClick={handleLogout}
             >
               登出
             </button>
