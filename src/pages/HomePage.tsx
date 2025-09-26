@@ -1,7 +1,7 @@
 import { MovieCard } from "../components/MovieCard";
 import apiClient from "../apiClient";
 import { useState, useEffect } from "react";
-import type { Movie } from "../types/popularMovieResponse";
+import type { Movie } from "../types/movieResponse";
 import styles from "./HomePage.module.css";
 
 export const HomePage = () => {

@@ -1,4 +1,4 @@
-import { type Movie } from "../types/popularMovieResponse";
+import { type Movie } from "../types/movieResponse";
 import styles from "./MovieCard.module.css";
 import { useNavigate } from "react-router-dom";
 

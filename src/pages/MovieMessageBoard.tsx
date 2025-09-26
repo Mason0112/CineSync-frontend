@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import apiClient from '../apiClient';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 
 
@@ -11,7 +11,7 @@ export const MovieMessageBoard = () => {
     console.log('Movie ID:', movieId);
     const fetchMovieDetail = async (id: string) => {
         try {
-            const response = await apiClient.get(`/movies/${id}`);
+            const response = await apiClient.get(`/movies/detail/${id}`);
             console.log('Movie Details:', response.data);
         } catch (error) {
             console.error('Error fetching movie details:', error);
@@ -19,11 +19,7 @@ export const MovieMessageBoard = () => {
     };
 
     useEffect(() => {
-
-        
-        
-
-
+    fetchMovieDetail(movieId!);
     }, [movieId]);
 
 
