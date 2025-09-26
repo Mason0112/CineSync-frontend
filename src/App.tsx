@@ -4,6 +4,7 @@ import { HomePage } from "./pages/HomePage";
 import TopBar from "./components/TopBar";
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
+import { MovieMessageBoard } from "./pages/MovieMessageBoard";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         {/* 當 URL 為 "/login" 時，渲染 LoginPage */}
         <Route path="/login" element={<LoginPage />} />
+        {/* 當 URL 為 "/movie/:movieId" 時，渲染 MovieMessageBoard */}
+        <Route path="/movie/:movieId" element={<MovieMessageBoard />} />
       </Routes>
     </div>
   );

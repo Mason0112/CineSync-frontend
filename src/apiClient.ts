@@ -1,6 +1,7 @@
 // src/api/apiClient.ts
 
 import axios, { type AxiosInstance, type InternalAxiosRequestConfig, type AxiosResponse, type AxiosError } from 'axios';
+import { useAuthStore } from './stores/authStore';
 
 // 接下來的程式碼保持不變
 const apiClient: AxiosInstance = axios.create({
@@ -38,6 +39,23 @@ apiClient.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
+      if (error.response && [401, 403].includes(error.response.status)) {
+      console.log('Authentication error, logging out...');
+      
+      // 取得 Zustand store 的 logout action
+      // 注意：在 React 元件之外，要用 .getState() 來取得 state 和 actions
+      const { logout } = useAuthStore.getState();
+
+      // 執行登出邏輯 (清除 token, 更新 state)
+      logout();
+      
+      // 跳轉到登入頁面
+      // 使用 window.location.href 會觸發頁面刷新，可以清除所有殘留的狀態
+      // 這通常是在這種情境下最安全的做法
+      window.location.href = '/login'; 
+    }
+    
+    // 將錯誤繼續拋出，以便呼叫 API 的地方可以進行自己的錯誤處理
     return Promise.reject(error);
   }
 );

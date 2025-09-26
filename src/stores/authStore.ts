@@ -18,8 +18,8 @@ export const useAuthStore = create<AuthState>()(
     // `set` 函式用來更新狀態
     (set) => ({
       // 初始狀態
-      isLoggedIn: !!localStorage.getItem('authToken'), // 仍然可以從 localStorage 讀取初始值
-      userName: localStorage.getItem('userName'),
+      isLoggedIn: false, // 仍然可以從 localStorage 讀取初始值
+      userName: null,
 
       // 登入 Action
       login: (token: string, userName?: string) => {
