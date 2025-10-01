@@ -1,0 +1,187 @@
+/* === 主卡片容器 === */
+.cardContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === 背景圖片樣式 - 縮小高度 === */
+.backdropImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* === 詳細資料容器 === */
+.detailsContainer {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* === 標題樣式 === */
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1c1e21;
+  margin: 0;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* === 資訊行容器 - 所有基本資訊放在同一行 === */
+.infoRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+/* === 元資訊 (日期、預算) === */
+.metaInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  min-width: 150px;
+}
+
+.metaInfo span {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* === 類型標籤區域 === */
+.genres {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.genreTag {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 0.3rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* === 製作公司資訊 === */
+.productionInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  flex: 1;
+  min-width: 200px;
+}
+
+.productionLabel {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.companyText {
+  font-weight: 400;
+  color: #555;
+}
+
+/* === 劇情簡介區域 === */
+.overviewSection {
+  margin-top: 1rem;
+}
+
+.overviewSection h2 {
+  font-size: 1.3rem;
+  color: #1c1e21;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.overviewText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  text-align: justify;
+}
+
+/* === 響應式設計 === */
+@media (max-width: 768px) {
+  .cardContainer {
+    margin: 10px;
+    border-radius: 8px;
+  }
+
+  .backdropImage {
+    height: 150px;
+  }
+
+  .detailsContainer {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .infoRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .metaInfo {
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .productionInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .backdropImage {
+    height: 120px;
+  }
+
+  .detailsContainer {
+    padding: 0.8rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .infoRow {
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+
+  .metaInfo {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}

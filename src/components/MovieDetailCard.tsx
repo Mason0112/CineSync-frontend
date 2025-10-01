@@ -6,10 +6,8 @@ interface MovieDetailProps {
 }
 
 export const MovieDetailCard = ({ movieDetail }: MovieDetailProps) => {
-  // 格式化預算為貨幣格式 (例如：$100,000,000)
-  // 注意：您的 interface 中 budget 拼寫為 bugdet，這裡保持一致
   const formattedBudget =
-    movieDetail.budget > 0
+    movieDetail.budget != null && movieDetail.budget > 0
       ? new Intl.NumberFormat("en-US", {
           style: "currency",
           currency: "USD",
@@ -30,39 +28,44 @@ export const MovieDetailCard = ({ movieDetail }: MovieDetailProps) => {
 
       {/* 2. 下方的詳細資料 */}
       <div className={styles.detailsContainer}>
+        {/* 標題跨越兩欄 */}
         <h1 className={styles.title}>{movieDetail.title}</h1>
 
-        <div className={styles.metaInfo}>
-          <span>上映日期：{movieDetail.releaseDate}</span>
-          <span>預算：{formattedBudget}</span>
+        {/* 上半部：所有基本資訊放在一行 */}
+        <div className={styles.infoRow}>
+          {/* 上映日期和預算 */}
+          <div className={styles.metaInfo}>
+            <span>📅 上映日期：{movieDetail.releaseDate}</span>
+            <span>💰 預算：{formattedBudget}</span>
+          </div>
+
+          {/* 電影類型 */}
+          <div className={styles.genres}>
+            {movieDetail.genres.map((genre) => (
+              <span key={genre.id} className={styles.genreTag}>
+                {genre.name}
+              </span>
+            ))}
+          </div>
+
+          {/* 製作公司 */}
+          <div className={styles.productionInfo}>
+            <span className={styles.productionLabel}>🏢 製作公司：</span>
+            {movieDetail.productionCompanies &&
+              movieDetail.productionCompanies.length > 0 && (
+                <span className={styles.companyText}>
+                  {movieDetail.productionCompanies
+                    .map((company) => company.name)
+                    .join(", ")}
+                </span>
+              )}
+          </div>
         </div>
 
-        <div className={styles.genres}>
-          {movieDetail.genres.map((genre) => (
-            <span key={genre.id} className={styles.genreTag}>
-              {genre.name}
-            </span>
-          ))}
-        </div>
-
+        {/* 下半部：劇情簡介 */}
         <div className={styles.overviewSection}>
           <h2>劇情簡介</h2>
           <p className={styles.overviewText}>{movieDetail.overview}</p>
-        </div>
-
-        <div className={styles.productionSection}>
-          <h2>製作公司</h2>
-          {/* 檢查是否有製作公司資料 */}
-          {movieDetail.productionCompanies &&
-            movieDetail.productionCompanies.length > 0 && (
-              <p className={styles.companyText}>
-                {
-                  movieDetail.productionCompanies
-                    .map((company) => company.name)
-                    .join(", ")
-                }
-              </p>
-            )}
         </div>
       </div>
     </div>
