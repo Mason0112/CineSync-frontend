@@ -10,7 +10,7 @@ export const HomePage = () => {
   useEffect(() => {
     const queryParams = {
       page: 1,
-      language: "UK",
+      language: "zh-TW",
     };
     async function getPopularMovies() {
       try {
