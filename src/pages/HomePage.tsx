@@ -23,16 +23,27 @@ export const HomePage = () => {
     }
     getPopularMovies();
   }, []);
+  
   if (!movies) {
-    return <div>Loading popular movies... ✨</div>;
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.loadingSpinner}></div>
+        <p className={styles.loadingText}>Loading popular movies...</p>
+      </div>
+    );
   }
 
-  console.log("HomePage styles object:", styles); // <--- 在這裡添加這行
   return (
-    <div className={styles.homePageContainer}>
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
+    <div className={styles.pageWrapper}>
+      <div className={styles.heroSection}>
+        <h1 className={styles.heroTitle}>Popular Movies</h1>
+        <p className={styles.heroSubtitle}>Discover the most popular movies right now</p>
+      </div>
+      <div className={styles.homePageContainer}>
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </div>
     </div>
   );
 }

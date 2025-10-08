@@ -1,17 +1,17 @@
 /* TopBar.css */
 
 /* ✨ 1. 全域變數與主題設定 (Design System) */
-/* 將常用的值定義成變數，方便統一管理和修改 */
+/* 配合 HomePage 的紫色漸層主題 */
 :root {
-  --primary-color: #007bff;
-  --primary-color-dark: #0056b3;
-  --secondary-color: #6c757d;
-  --secondary-color-dark: #5a6268;
-  --text-color: #333;
-  --text-color-light: #555;
-  --background-color: #ffffff;
-  --border-color: #eaeaea;
-  --header-height: 70px; /* 稍微加高一點，更大氣 */
+  --primary-color: #667eea;
+  --primary-color-dark: #5568d3;
+  --secondary-color: #764ba2;
+  --secondary-color-dark: #5e3c82;
+  --text-color: #ffffff;
+  --text-color-light: rgba(255, 255, 255, 0.9);
+  --background-color: rgba(102, 126, 234, 0.95);
+  --border-color: rgba(255, 255, 255, 0.2);
+  --header-height: 70px;
   --border-radius: 8px;
   --transition-speed: 0.3s;
 }
@@ -23,14 +23,14 @@
   align-items: center;
   width: 100%;
   height: var(--header-height);
-  padding: 0 32px; /* 稍微加大左右邊距 */
+  padding: 0 40px;
   box-sizing: border-box;
-  background-color: var(--background-color);
-  /* 使用柔和的陰影增加立體感 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  position: sticky; /* 讓導覽列滾動時固定在頂部 */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
   top: 0;
   z-index: 1000;
+  backdrop-filter: blur(10px);
 }
 
 /* --- Logo 區塊 --- */
@@ -40,22 +40,22 @@
   /* 確保 logo 垂直置中 */
   display: flex;
   align-items: center;
+  background: transparent; /* 確保容器背景透明 */
 }
-
 
 .topbar-logo img {
-  /* 設定一個比 topbar 高度 (70px) 稍小的高度 */
-  height: 50px; 
-  
-  /* 寬度設為 auto，瀏覽器會自動計算以維持 1:1 的比例 */
-  width: auto; 
-  
-  /* 確保圖片在垂直方向上對齊得很好 */
-  vertical-align: middle; 
-  
-  /* 之前的 object-fit 和 object-position 樣式現在都不需要了 */
+  height: 50px;
+  width: auto;
+  vertical-align: middle;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform var(--transition-speed) ease;
+  background: transparent; /* 確保圖片背景透明 */
+  mix-blend-mode: normal; /* 確保混合模式不影響透明度 */
 }
 
+.topbar-logo img:hover {
+  transform: scale(1.05);
+}
 
 /* --- 中間導覽列 --- */
 .topbar-nav {
@@ -63,7 +63,8 @@
   justify-self: center;
 }
 
-.topbar-nav ul { /* 您的 JSX 結構沒有 ul，所以這個選擇器可能用不到 */
+.topbar-nav ul {
+  /* 您的 JSX 結構沒有 ul，所以這個選擇器可能用不到 */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -74,8 +75,8 @@
 /* 直接對 li 元素操作 */
 .topbar-nav li {
   list-style: none;
-  display: inline-block; /* 讓 li 水平排列 */
-  margin: 0 20px;
+  display: inline-block;
+  margin: 0;
 }
 
 .topbar-nav a {
@@ -90,7 +91,7 @@
 
 /* ✨ 3. 導覽列連結美化：滑鼠懸停時出現底線動畫 */
 .topbar-nav a::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 2px;
@@ -110,7 +111,6 @@
   transform: scaleX(1); /* 滑鼠懸停時底線展開 */
   transform-origin: bottom left;
 }
-
 
 /* --- 右側使用者功能區 --- */
 .topbar-actions {
@@ -154,31 +154,35 @@
 
 /* 主要按鈕 (註冊) */
 .button-primary {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: white;
+  color: var(--primary-color);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 .button-primary:hover {
-  background-color: var(--primary-color-dark);
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* 次要按鈕 (登入) */
 .button-secondary {
   background-color: transparent;
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
+  color: white;
+  border: 2px solid white;
 }
 .button-secondary:hover {
-  background-color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.15);
   color: white;
 }
 
 /* 登出按鈕 */
 .button-logout {
-  background-color: var(--secondary-color);
+  background-color: rgba(255, 255, 255, 0.2);
   color: white;
+  border: 2px solid white;
 }
 .button-logout:hover {
-  background-color: var(--secondary-color-dark);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* ✨ 6. 最重要的加分項：響應式設計 (RWD) */
@@ -187,7 +191,7 @@
   .topbar {
     padding: 0 16px; /* 縮小邊距 */
     /* 將中間的導覽列空間清空，左右各佔一半 */
-    grid-template-columns: auto 1fr; 
+    grid-template-columns: auto 1fr;
   }
 
   .topbar-nav {
@@ -197,7 +201,7 @@
   .topbar-actions {
     grid-column: 2; /* 將右側區塊移到第二欄 */
   }
-  
+
   /* 可以新增一個漢堡選單按鈕 (需要在 JSX 中加入) */
   /* .hamburger-menu { display: block; } */
 
