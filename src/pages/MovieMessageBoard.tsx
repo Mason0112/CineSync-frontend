@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { MovieDetailCard } from "../components/MovieDetailCard";
 import type { MovieDetail } from "../types/movieResponse";
 import type { Comment } from "../types/comment";
+import type { Page } from "../types/page";
 import Pagination from "../components/Pagination";
 import CommentList from "../components/CommentList";
 import CommentTypingCard from "../components/CommentTypingCard";
@@ -35,14 +36,23 @@ export const MovieMessageBoard = () => {
   }, [movieId]);
 
   const fetchCommentsByMovieId = async (id: string, page: number = 0) => {
+    setIsLoading(true);
     try {
-      const response = await apiClient.get<Comment[]>(`/comments/movie/${id}`, {
-        params: {
-          page: page, // 0-based for backend
-          pageSize: 5,
+      const response = await apiClient.get<Page<Comment>>(
+        `/comments/movie/${id}`,
+        {
+          params: {
+            page: page,
+            pageSize: 5,
+          },
         },
-      });
-      setComments(response.data);
+      );
+      if (response.data.totalElements === 0) {
+        setEmptyMessage("No comments yet. Be the first to comment!");
+      }
+      setIsLoading(false);
+      setComments(response.data.content || []);
+      setTotalPages(response.data.totalPages || 1);
       console.log("Comments:", response.data);
     } catch (error) {
       console.error("Error fetching comments:", error);
