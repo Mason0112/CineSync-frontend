@@ -1,0 +1,110 @@
+.commentCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 4px solid #667eea;
+}
+
+.commentCard:hover {
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+  transform: translateY(-2px);
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.commentUser {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #667eea;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.commentUser::before {
+  content: "👤";
+  font-size: 1.2rem;
+}
+
+.commentDate {
+  font-size: 0.875rem;
+  color: #718096;
+  font-weight: 400;
+}
+
+.commentBody {
+  color: #2d3748;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.commentBody p {
+  margin: 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* 空狀態樣式 */
+.emptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #a0aec0;
+  font-size: 1.1rem;
+}
+
+/* 載入中動畫 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: #667eea;
+  font-size: 1rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .commentCard {
+    padding: 1.25rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .commentHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .commentUser {
+    font-size: 0.95rem;
+  }
+
+  .commentDate {
+    font-size: 0.8rem;
+  }
+
+  .commentBody {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .commentCard {
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .commentUser::before {
+    font-size: 1rem;
+  }
+}
